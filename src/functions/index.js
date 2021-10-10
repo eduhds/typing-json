@@ -75,3 +75,5 @@ function array(value = [], types = '') {
 
 	return types;
 }
+
+//

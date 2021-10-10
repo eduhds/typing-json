@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { ACTIONS, AppContext } from '../context/AppContext';
+import { Styles } from '../themes/Styles';
+import RaySVG from '../assets/images/ray.svg';
 
 export default function ButtonConvert() {
 	const [, dispatch] = useContext(AppContext);
@@ -8,8 +10,8 @@ export default function ButtonConvert() {
 	return (
 		<TouchableOpacity
 			onPress={() => dispatch({ type: ACTIONS.JSON_TO_TYPES })}
-			style={{ backgroundColor: 'dodgerblue', padding: 15 }}>
-			<Text>Vai</Text>
+			style={Styles.buttonConvertContainer}>
+			<img src={RaySVG} style={{ height: 40, width: 40 }} alt='ray' />
 		</TouchableOpacity>
 	);
 }

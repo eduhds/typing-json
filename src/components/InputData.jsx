@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import { ACTIONS, AppContext } from '../context/AppContext';
+import { Styles } from '../themes/Styles';
 
 export default function InputData() {
 	const [state, dispatch] = useContext(AppContext);
@@ -13,29 +14,13 @@ export default function InputData() {
 
 	return (
 		<View style={{ flex: 1 }}>
-			<Text
-				style={{
-					marginHorizontal: 25,
-					backgroundColor: 'red',
-					padding: 5,
-					color: 'white',
-					fontSize: 16
-				}}>
-				JSON input
-			</Text>
+			<Text style={Styles.inputOutputBoxTitle}>JSON input</Text>
 			<TextInput
 				multiline
-				placeholder='type or paste...'
+				placeholder='type or paste here...'
 				value={jsonInput}
 				onChangeText={changeJsonInput}
-				style={{
-					marginHorizontal: 25,
-					padding: 10,
-					borderWidth: 2,
-					borderColor: 'red',
-					height: 400,
-					textAlignVertical: 'top'
-				}}
+				style={[Styles.inputOutputBox, Styles.inputText]}
 			/>
 		</View>
 	);

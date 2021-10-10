@@ -1,22 +1,19 @@
-import './App.css';
-import { ScrollView, View, Text } from 'react-native';
+import React from 'react';
+import { ScrollView, View } from 'react-native';
 import InputData from './components/InputData';
 import OutputData from './components/OutputData';
 import { AppContextProvider } from './context/AppContext';
 import ButtonConvert from './components/ButtonConvert';
+import AppBar from './components/AppBar';
+import { Styles } from './themes/Styles';
 
 export default function App() {
 	return (
 		<AppContextProvider>
 			<ScrollView>
-				<Text style={{ fontSize: 18, margin: 10 }}>JSON TO TYPES</Text>
+				<AppBar />
 
-				<View
-					style={{
-						flexDirection: 'row',
-						flexWrap: 'wrap',
-						alignItems: 'center'
-					}}>
+				<View style={Styles.contentContainer}>
 					<InputData />
 
 					<ButtonConvert />
