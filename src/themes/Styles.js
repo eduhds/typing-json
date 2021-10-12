@@ -20,6 +20,10 @@ export const Styles = StyleSheet.create({
 		alignItems: 'center',
 		marginTop: 20
 	},
+	contentContainerMobile: {
+		marginTop: 20,
+		marginBottom: 20
+	},
 	inputOutputBox: {
 		marginHorizontal: 25,
 		padding: 10,
@@ -41,7 +45,11 @@ export const Styles = StyleSheet.create({
 	buttonConvertContainer: {
 		backgroundColor: Colors.primary2,
 		padding: 5,
-		borderRadius: 25
+		borderRadius: 25,
+		width: 50,
+		height: 50,
+		alignSelf: 'center',
+		marginVertical: 10
 	},
 	inputText: { textAlignVertical: 'top', fontSize: 16, color: Colors.text },
 	outputText: { fontSize: 16, color: Colors.primary2 },
