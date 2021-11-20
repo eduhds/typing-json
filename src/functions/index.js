@@ -1,77 +1,80 @@
+import prettier from 'prettier/standalone';
+import parser from 'prettier/parser-typescript';
+
 export function convertJsonToTypes(jsonInput = '') {
 	if (!jsonInput) return '';
 
 	try {
 		const json = JSON.parse(jsonInput);
-		let types = '';
 
-		switch (typeof json) {
-			case 'object':
-				if (typeof json === 'object' && json.length > 0) {
-					types = 'type Root = Array<';
-					types += array(json);
-					types += '>;';
-				} else if (typeof json === 'object' && json.length === 0) {
-					types = 'type Root = Array<any>;';
-				} else if (typeof json === 'object' && Object.keys(json).length === 0) {
-					types = 'type Root = any;';
-				} else {
-					types = 'type Root = {\n  ';
-					types += object(json);
-					types += '\n};';
-				}
-				break;
-			default:
-				types = 'Invalid JSON';
-				break;
-		}
+		const out = parseToTypes(json, {});
+		const outStr = 'type Root = ' + parseToString(out);
 
-		return types;
+		return prettier.format(outStr, { parser: 'typescript', plugins: [parser] });
 	} catch (error) {
 		return String(error);
 	}
 }
 
-function object(value = {}, types = '') {
-	const objEntries = Object.entries(value);
-	objEntries.forEach(([key, val], index) => {
-		if (val === null || val === undefined) {
-			types += `${key}?: any;`;
-		} else if (typeof val === 'object' && val.length > 0) {
-			types += `${key}: Array<`;
-			types += array(val, '');
-			types += '>;';
-		} else if (typeof val === 'object' && val.length === 0) {
-			types += `${key}: Array<any>;`;
-		} else if (typeof val === 'object' && Object.keys(val).length === 0) {
-			types += `${key}: any;`;
-		} else if (typeof val === 'object') {
-			types += `${key}: {\n  `;
-			types += object(val, '');
-			types += '\n  }';
+function parseToTypes(input, output = {}) {
+	if (input === null || undefined) {
+		output = null;
+	} else if (Array.isArray(input)) {
+		// []
+		const item = input[0];
+		if (item === null || item === undefined) {
+			output = [];
+		} else if (typeof item === 'object') {
+			output = [parseToTypes(item, {})];
 		} else {
-			types += `${key}: ${typeof val};`;
+			output = [typeof item];
 		}
-		if (index + 1 < objEntries.length) types += '\n  ';
-	});
-	return types;
+	} else if (typeof input === 'object') {
+		// {}
+		Object.entries(input).forEach(item => {
+			const [key, value] = item;
+
+			if (value === null || value === undefined) {
+				output[key] = null;
+			} else if (typeof value === 'object') {
+				output[key] = parseToTypes(value, {});
+			} else {
+				output[key] = typeof value;
+			}
+		});
+	}
+	return output;
 }
 
-function array(value = [], types = '') {
-	const item = value[0];
-	if (item === null || item === undefined) {
-		types += `?: any;`;
-	} else if (typeof item === 'object' && item.length) {
-		types += 'Array<';
-		types += array(item[0], '');
-		types += '>';
-	} else if (typeof item === 'object') {
-		types += '{\n  ';
-		types += object(item, '');
-		types += '\n  }';
-	} else {
-		types += `${typeof item}`;
-	}
+function parseToString(input, output = '') {
+	if (input === null || input === undefined) {
+		output += 'any | null';
+	} else if (Array.isArray(input)) {
+		const subItem = input[0];
 
-	return types;
+		if (subItem === null || subItem === undefined) {
+			output += `Array<any>;`;
+		} else if (typeof subItem === 'object') {
+			output += parseToString(subItem);
+		} else {
+			output += `Array<${subItem}>;`;
+		}
+	} else if (typeof input === 'object') {
+		output += '{';
+		Object.entries(input).forEach(item => {
+			const [key, value] = item;
+
+			if (value === null || value === undefined) {
+				output += `${key}?: any|null;`;
+			} else if (typeof value === 'object') {
+				output += `${key}: ${parseToString(value)}`;
+			} else {
+				output += `${key}: ${value};`;
+			}
+		});
+		output += '};';
+	} else {
+		output = input;
+	}
+	return output;
 }
