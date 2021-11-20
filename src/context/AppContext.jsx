@@ -1,4 +1,5 @@
 import React, { createContext, useReducer } from 'react';
+
 import { convertJsonToTypes } from '../functions';
 
 const initialState = {
@@ -23,11 +24,7 @@ export const AppContext = createContext(initialState);
 
 export function AppContextProvider({ children }) {
 	const [state, dispatch] = useReducer(reducer, initialState);
-	return (
-		<AppContext.Provider value={[state, dispatch]}>
-			{children}
-		</AppContext.Provider>
-	);
+	return <AppContext.Provider value={[state, dispatch]}>{children}</AppContext.Provider>;
 }
 
 export const ACTIONS = {

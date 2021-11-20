@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollView, View, useWindowDimensions } from 'react-native';
+
 import InputData from './components/InputData';
 import OutputData from './components/OutputData';
 import { AppContextProvider } from './context/AppContext';
@@ -17,12 +18,7 @@ export default function App() {
 			<ScrollView>
 				<AppBar />
 
-				<View
-					style={
-						verticalLayout
-							? Styles.contentContainerMobile
-							: Styles.contentContainer
-					}>
+				<View style={verticalLayout ? Styles.contentContainerMobile : Styles.contentContainer}>
 					<InputData />
 
 					<ButtonConvert />

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { View, Text, TextInput } from 'react-native';
+
 import { ACTIONS, AppContext } from '../context/AppContext';
 import { Styles } from '../themes/Styles';
 

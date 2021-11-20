@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { ScrollView, View, Text } from 'react-native';
+
 import { AppContext } from '../context/AppContext';
 import { Styles } from '../themes/Styles';
 
