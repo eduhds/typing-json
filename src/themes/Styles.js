@@ -8,6 +8,7 @@ export const Styles = StyleSheet.create({
 		flexDirection: 'row'
 	},
 	appBarTitle: { fontSize: 18, fontWeight: '500', color: Colors.white },
+	appBarTitleVersion: { fontSize: 12, fontWeight: '500', color: Colors.white },
 	appBarSubtitle: {
 		fontSize: 14,
 		fontWeight: '500',
