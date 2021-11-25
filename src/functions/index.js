@@ -48,16 +48,16 @@ function parseToTypes(input, output = {}) {
 
 function parseToString(input, output = '') {
 	if (input === null || input === undefined) {
-		output += 'any | null';
+		output += 'any | null\n';
 	} else if (Array.isArray(input)) {
 		const subItem = input[0];
 
 		if (subItem === null || subItem === undefined) {
-			output += `Array<any>;`;
+			output += `Array<any>\n`;
 		} else if (typeof subItem === 'object') {
 			output += parseToString(subItem);
 		} else {
-			output += `Array<${subItem}>;`;
+			output += `${subItem}\n`;
 		}
 	} else if (typeof input === 'object') {
 		output += '{';
@@ -65,14 +65,18 @@ function parseToString(input, output = '') {
 			const [key, value] = item;
 
 			if (value === null || value === undefined) {
-				output += `${key}?: any|null;`;
+				output += `${key}?: any|null\n`;
 			} else if (typeof value === 'object') {
-				output += `${key}: ${parseToString(value)}`;
+				if (Array.isArray(value)) {
+					output += `${key}: Array<${parseToString(value[0])}>\n`;
+				} else {
+					output += `${key}: ${parseToString(value)}\n`;
+				}
 			} else {
-				output += `${key}: ${value};`;
+				output += `${key}: ${value}\n`;
 			}
 		});
-		output += '};';
+		output += '}';
 	} else {
 		output = input;
 	}
