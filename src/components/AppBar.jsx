@@ -9,9 +9,9 @@ export default function AppBar() {
 	return (
 		<View style={Styles.appBarContainer}>
 			<img src={LogoPNG} style={{ height: 40, width: 40, marginRight: 10 }} alt='logo' />
-			<View>
+			<View style={{ flex: 1 }}>
 				<Text style={Styles.appBarTitle}>
-					JSON to Types <Text style={Styles.appBarTitleVersion}>{VERSION}</Text>
+					JSON to Types <Text style={Styles.appBarTitleVersion}>v{VERSION}</Text>
 				</Text>
 				<Text style={Styles.appBarSubtitle}>Get types form your JSON data to use in TypeScript or Flow</Text>
 			</View>

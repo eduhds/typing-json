@@ -1,17 +1,19 @@
 import React, { useContext } from 'react';
-import { View, Text, TextInput } from 'react-native';
+import { View, Text, TextInput, useWindowDimensions } from 'react-native';
 
 import { ACTIONS, AppContext } from '../context/AppContext';
 import { Styles } from '../themes/Styles';
 
 export default function InputData() {
 	const [state, dispatch] = useContext(AppContext);
+	const { width } = useWindowDimensions();
+
+	const { jsonInput } = state;
+	const verticalLayout = width < 768;
 
 	const changeJsonInput = value => {
 		dispatch({ type: ACTIONS.JSON_INPUT, payload: value });
 	};
-
-	const { jsonInput } = state;
 
 	return (
 		<View style={{ flex: 1 }}>
@@ -21,7 +23,7 @@ export default function InputData() {
 				placeholder='type or paste here...'
 				value={jsonInput}
 				onChangeText={changeJsonInput}
-				style={[Styles.inputOutputBox, Styles.inputText]}
+				style={[Styles.inputOutputBox, Styles.inputText, verticalLayout ? { height: 200 } : {}]}
 			/>
 		</View>
 	);

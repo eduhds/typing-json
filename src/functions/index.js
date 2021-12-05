@@ -32,7 +32,8 @@ function parseToTypes(input, output = {}) {
 	} else if (typeof input === 'object') {
 		// {}
 		Object.entries(input).forEach(item => {
-			const [key, value] = item;
+			const [oldkey, value] = item;
+			const key = fmtKey(oldkey);
 
 			if (value === null || value === undefined) {
 				output[key] = null;
@@ -81,4 +82,10 @@ function parseToString(input, output = '') {
 		output = input;
 	}
 	return output;
+}
+
+function fmtKey(key = '') {
+	key = String(key).replace(/[-+*|:/\\()&%=?>< ]/g, '');
+	if (key.charAt(0).match(/[0-9]/)) key = `_${key}`;
+	return key;
 }
