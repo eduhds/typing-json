@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, View, useWindowDimensions } from 'react-native';
 
+import './App.css';
 import InputData from './components/InputData';
 import OutputData from './components/OutputData';
 import { AppContextProvider } from './context/AppContext';

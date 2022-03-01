@@ -54,5 +54,6 @@ export const Styles = StyleSheet.create({
 	},
 	inputText: { textAlignVertical: 'top', fontSize: 16, color: Colors.text },
 	outputText: { fontSize: 16, color: Colors.primary2 },
-	buttonConvertImage: { width: 30, height: 30 }
+	buttonConvertImage: { width: 30, height: 30 },
+	authorText: { fontSize: 12, color: Colors.white }
 });
