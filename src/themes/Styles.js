@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+
 import { Colors } from './Colors';
 
 export const Styles = StyleSheet.create({
@@ -38,10 +39,14 @@ export const Styles = StyleSheet.create({
 		marginHorizontal: 25,
 		backgroundColor: Colors.primary1,
 		padding: 10,
-		color: Colors.white,
-		fontSize: 16,
 		borderTopStartRadius: 4,
-		borderTopEndRadius: 4
+		borderTopEndRadius: 4,
+		flexDirection: 'row',
+		justifyContent: 'space-between'
+	},
+	inputOutputBoxTitleText: {
+		color: Colors.white,
+		fontSize: 16
 	},
 	buttonConvertContainer: {
 		backgroundColor: Colors.primary2,

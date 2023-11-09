@@ -5,10 +5,9 @@ import { ACTIONS, AppContext } from '../context/AppContext';
 import { Styles } from '../themes/Styles';
 
 export default function InputData() {
-	const [state, dispatch] = useContext(AppContext);
+	const [{ jsonInput }, dispatch] = useContext(AppContext);
 	const { width } = useWindowDimensions();
 
-	const { jsonInput } = state;
 	const verticalLayout = width < 768;
 
 	const changeJsonInput = value => {
@@ -17,7 +16,16 @@ export default function InputData() {
 
 	return (
 		<View style={{ flex: 1 }}>
-			<Text style={Styles.inputOutputBoxTitle}>JSON input</Text>
+			<View style={Styles.inputOutputBoxTitle}>
+				<Text style={Styles.inputOutputBoxTitleText}>JSON input</Text>
+				{!!jsonInput && (
+					<Text
+						onPress={() => changeJsonInput('')}
+						style={[Styles.inputOutputBoxTitleText, { textDecorationLine: 'underline', fontStyle: 'italic' }]}>
+						Clear
+					</Text>
+				)}
+			</View>
 			<TextInput
 				multiline
 				placeholder='type or paste here...'
