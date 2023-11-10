@@ -13,7 +13,7 @@ export default function AppBar() {
 				<Text style={Styles.appBarTitle}>
 					JSON to Types <Text style={Styles.appBarTitleVersion}>v{VERSION}</Text>
 				</Text>
-				<Text style={Styles.appBarSubtitle}>Get types from your JSON data to use in TypeScript or Flow</Text>
+				<Text style={Styles.appBarSubtitle}>Get types from your JSON data to use in TypeScript</Text>
 				<a
 					href='https://github.com/eduhds/json-to-types'
 					style={{ textDecoration: 'underline', textDecorationColor: 'white' }}>
