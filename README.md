@@ -1,3 +1,5 @@
 # JSON-TO-TYPES
 
-[https://json-to-types.web.app](https://json-to-types.web.app)
+Get types from your JSON data to use in TypeScript.
+
+[https://eduhds.github.io/json-to-types/](https://eduhds.github.io/json-to-types/)
