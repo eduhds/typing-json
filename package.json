@@ -4,6 +4,7 @@
   "description": "",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
+  "bin": "./bin/json-to-types.cjs",
   "files": [
     "lib/"
   ],
