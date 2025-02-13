@@ -26,7 +26,7 @@
   "bugs": {
     "url": "https://github.com/username/repository/issues"
   },
-  "homepage": "https://github.com/username/repository#readme",
+  "homepage": "/json-to-types",
   "devDependencies": {
     "@babel/core": "^7.23.7",
     "@babel/preset-env": "^7.23.7",
@@ -38,9 +38,12 @@
     "changelogen": "^0.5.5",
     "jest": "^29.7.0",
     "lefthook": "^1.10.10",
-    "prettier": "3.5.0",
     "typedoc": "^0.25.6",
     "typescript": "^5.3.3"
   },
-  "packageManager": "pnpm@10.3.0"
+  "packageManager": "pnpm@10.3.0",
+  "dependencies": {
+    "@prettier/sync": "^0.5.2",
+    "prettier": "^3.5.1"
+  }
 }
