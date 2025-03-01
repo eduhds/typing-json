@@ -12,14 +12,14 @@ Get types from your JSON data to use in TypeScript.
 
 <img src="screenshot.png" />
 
-[Documentação](https://<username>.github.io/<repository>)
+<!-- [Documentação](https://<username>.github.io/<repository>) -->
 
 ## Instalação
 
 ```sh
-npm i username/repository
-yarn add username/repository
-pnpm add username/repository
+npm i json-to-types
+yarn add json-to-types
+pnpm add json-to-types
 ```
 
 ## Desenvolvimento

@@ -1,7 +1,7 @@
 {
-  "name": "@eduhds/json-to-types",
+  "name": "json-to-types",
   "version": "0.1.5",
-  "description": "",
+  "description": "Convert JSON data to TypeScript types",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
   "bin": "./bin/json-to-types.cjs",
@@ -19,13 +19,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/username/repository.git"
+    "url": "git+https://github.com/eduhds/json-to-types.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/username/repository/issues"
+    "url": "https://github.com/eduhds/json-to-types/issues"
   },
   "homepage": "/json-to-types",
   "devDependencies": {
