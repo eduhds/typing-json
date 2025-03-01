@@ -1,5 +1,5 @@
 {
-  "name": "json-to-types",
+  "name": "typing-json",
   "version": "0.1.6",
   "description": "Convert JSON data to TypeScript types",
   "main": "./lib/cjs/index.js",
