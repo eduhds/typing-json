@@ -14,7 +14,7 @@
     "tsc": "rm -rf lib && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "prepublishOnly": "pnpm run tsc",
     "test": "jest",
-    "docs": "typedoc --out docs src",
+    "docs": "echo 'skip for now'",
     "build": "pnpm run tsc && pnpm run docs && npx changelogen --output --bump"
   },
   "repository": {
