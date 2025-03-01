@@ -1,25 +1,44 @@
 import { jsonToTypes } from '../src';
 
+test('Should return number', () => {
+  expect(jsonToTypes('1')).toEqual(`number;
+`);
+});
+
+test('Should return string', () => {
+  expect(jsonToTypes('"hello"')).toEqual(`string;
+`);
+  expect(jsonToTypes('"1"')).toEqual(`string;
+`);
+});
+
+test('Should return null', () => {
+  expect(jsonToTypes('null')).toEqual(`null;
+`);
+});
+
 test('Should return Object Type', () => {
-  expect(jsonToTypes('{}')).toEqual(`type Root = {};
+  expect(jsonToTypes('{}')).toEqual(`{
+}
 `);
 });
 
 test('Should return Array Type', () => {
-  expect(jsonToTypes('[]')).toEqual(`type Root = Array<any>;
+  expect(jsonToTypes('[]')).toEqual(`Array<null>;
 `);
 });
 
 test('Should return Simple Object', () => {
-  expect(jsonToTypes('{"hello": "world"}')).toEqual(`type Root = { hello: string };
+  expect(jsonToTypes('{"hello": "world"}')).toEqual(`{
+  hello: string;
+}
 `);
 });
 
-/* FIXME: Returning number
 test('Should return Array of numbers', () => {
-  expect(jsonToTypes('[1, 2, 3]')).toEqual(`type Root = Array<number>;
+  expect(jsonToTypes('[1, 2, 3]')).toEqual(`Array<number>;
 `);
-}); */
+});
 
 test('Should return nested Object', () => {
   const example = `{
@@ -44,7 +63,8 @@ test('Should return nested Object', () => {
         }
     }
 }`;
-  expect(jsonToTypes(example)).toEqual(`type Root = {
+
+  expect(jsonToTypes(example)).toEqual(`{
   glossary: {
     title: string;
     GlossDiv: {
@@ -56,12 +76,15 @@ test('Should return nested Object', () => {
           GlossTerm: string;
           Acronym: string;
           Abbrev: string;
-          GlossDef: { para: string; GlossSeeAlso: Array<string> };
+          GlossDef: {
+            para: string;
+            GlossSeeAlso: Array<string>;
+          }
           GlossSee: string;
-        };
-      };
-    };
-  };
-};
+        }
+      }
+    }
+  }
+}
 `);
 });

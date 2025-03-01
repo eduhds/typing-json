@@ -1,70 +1,63 @@
 import prettier from '@prettier/sync';
 
-function parseToTypes(input: any, output: any = {}) {
-  if (input === null || undefined) {
-    output = null;
-  } else if (Array.isArray(input)) {
-    // []
-    const item = input[0];
-    if (item === null || item === undefined) {
-      output = [];
-    } else if (typeof item === 'object') {
-      output = [parseToTypes(item, {})];
-    } else {
-      output = [typeof item];
+type Input = object | null | undefined | string | number | boolean;
+type Output = object | null | undefined | string | number | boolean;
+
+function parseToTypes(input: Input): Output {
+  if (input === null || input === undefined) {
+    return input;
+  }
+
+  if (typeof input === 'object') {
+    if (Array.isArray(input)) {
+      // []
+      // TODO: Analisar todos os items do array, não só o primeiro
+      const item = input[0];
+      return [parseToTypes(item)];
     }
-  } else if (typeof input === 'object') {
+
     // {}
+    let output = {};
+
     Object.entries(input).forEach(item => {
       const [oldkey, value] = item;
       const key = fmtKey(oldkey);
-
-      if (value === null || value === undefined) {
-        output[key] = null;
-      } else if (typeof value === 'object') {
-        output[key] = parseToTypes(value, {});
-      } else {
-        output[key] = typeof value;
-      }
+      // @ts-ignore
+      output[key] = parseToTypes(value);
     });
+    return output;
   }
-  return output;
+
+  return typeof input;
 }
 
-function parseToString(input: any, output = '') {
+function parseToString(input: Output, output = '') {
   if (input === null || input === undefined) {
-    output += 'any | null\n';
-  } else if (Array.isArray(input)) {
-    const subItem = input[0];
-
-    if (subItem === null || subItem === undefined) {
-      output += `Array<any>\n`;
-    } else if (typeof subItem === 'object') {
-      output += parseToString(subItem);
-    } else {
-      output += `${subItem}\n`;
-    }
-  } else if (typeof input === 'object') {
-    output += '{';
-    Object.entries(input).forEach(item => {
-      const [key, value] = item;
-
-      if (value === null || value === undefined) {
-        output += `${key}?: any|null\n`;
-      } else if (typeof value === 'object') {
-        if (Array.isArray(value)) {
-          output += `${key}: Array<${parseToString(value[0])}>\n`;
-        } else {
-          output += `${key}: ${parseToString(value)}\n`;
-        }
-      } else {
-        output += `${key}: ${value}\n`;
-      }
-    });
-    output += '}';
-  } else {
-    output = input;
+    output += 'null';
+    return output;
   }
+
+  if (typeof input === 'object') {
+    if (Array.isArray(input)) {
+      const subItem = input[0];
+      output += parseToString(subItem);
+      return 'Array<' + output + '>';
+    }
+
+    if (typeof input === 'object') {
+      output += '{';
+
+      Object.entries(input).forEach(item => {
+        const [key, value] = item;
+        output += `${key}: ${parseToString(value)}\n`;
+      });
+      output += '}';
+      return output;
+    }
+  }
+
+  output = input as string;
+
   return output;
 }
 
@@ -80,8 +73,8 @@ export function jsonToTypes(jsonInput = '') {
   try {
     const json = JSON.parse(jsonInput);
 
-    const out = parseToTypes(json, {});
-    const outStr = 'type Root = ' + parseToString(out);
+    const out = parseToTypes(json);
+    const outStr = parseToString(out);
 
     return prettier.format(outStr, { parser: 'typescript' });
   } catch (error) {
