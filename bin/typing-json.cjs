@@ -5,7 +5,7 @@ const { jsonToTypes } = require('../lib/cjs/index.js');
 const args = process.argv.slice(2);
 
 if (!args.length) {
-  console.log('Usage: json-to-types <json string>');
+  console.log('Usage: typing-json <json string>');
   process.exit(1);
 }
 

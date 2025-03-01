@@ -4,7 +4,7 @@
   "description": "Convert JSON data to TypeScript types",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
-  "bin": "./bin/json-to-types.cjs",
+  "bin": "./bin/typing-json.cjs",
   "files": [
     "lib/"
   ],
@@ -19,15 +19,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eduhds/json-to-types.git"
+    "url": "git+https://github.com/eduhds/typing-json.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/eduhds/json-to-types/issues"
+    "url": "https://github.com/eduhds/typing-json/issues"
   },
-  "homepage": "/json-to-types",
+  "homepage": "https://github.com/eduhds/typing-json#readme",
   "devDependencies": {
     "@babel/core": "^7.23.7",
     "@babel/preset-env": "^7.23.7",

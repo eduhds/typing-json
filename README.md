@@ -8,18 +8,18 @@
 
 Get types from your JSON data to use in TypeScript.
 
-[https://eduhds.github.io/json-to-types/](https://eduhds.github.io/json-to-types/)
+<!-- -->[https://eduhds.github.io/json-to-types/](https://eduhds.github.io/json-to-types/)
 
 <img src="screenshot.png" />
-
+-->
 <!-- [Documentação](https://<username>.github.io/<repository>) -->
 
 ## Instalação
 
 ```sh
-npm i json-to-types
-yarn add json-to-types
-pnpm add json-to-types
+npm i typing-json
+yarn add typing-json
+pnpm add typing-json
 ```
 
 ## Desenvolvimento
