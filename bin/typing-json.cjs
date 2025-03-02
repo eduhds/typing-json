@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-const { jsonToTypes } = require('../lib/cjs/index.js');
+const path = require('path');
+const { jsonToTypes } = require(path.join(__dirname, '../lib/cjs/index.js'));
 
 const args = process.argv.slice(2);
 
