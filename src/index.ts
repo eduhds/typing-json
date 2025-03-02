@@ -1,7 +1,6 @@
-//import prettier from '@prettier/sync';
-import prettier from 'prettier/standalone';
-import parserTypescript from 'prettier/plugins/typescript';
-import parserEstree from 'prettier/plugins/estree';
+import * as prettier from 'prettier/standalone';
+import * as parserTypescript from 'prettier/plugins/typescript';
+import * as parserEstree from 'prettier/plugins/estree';
 
 type Input = object | null | undefined | string | number | boolean;
 type Output = object | null | undefined | string | number | boolean;
@@ -79,7 +78,10 @@ export async function jsonToTypes(jsonInput = '') {
     const out = parseToTypes(json);
     const outStr = parseToString(out);
 
-    return await prettier.format(outStr, { parser: 'typescript', plugins: [parserTypescript, parserEstree] });
+    return await prettier.format(outStr, {
+      parser: 'typescript',
+      plugins: [parserTypescript, parserEstree]
+    });
   } catch (error) {
     return String(error);
   }

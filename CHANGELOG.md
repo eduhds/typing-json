@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.1.11
+
+[compare changes](https://github.com/eduhds/typing-json/compare/v0.1.10...v0.1.11)
+
+### 📖 Documentation
+
+- Update README ([62b9dc3](https://github.com/eduhds/typing-json/commit/62b9dc3))
+
+### ❤️ Contributors
+
+- Eduardo H. Da Silva ([@eduhds](http://github.com/eduhds))
+
 ## v0.1.10
 
 [compare changes](https://github.com/eduhds/typing-json/compare/v0.1.6...v0.1.10)

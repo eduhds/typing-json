@@ -1,6 +1,6 @@
 {
   "name": "typing-json",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Convert JSON data to TypeScript types",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
@@ -9,7 +9,6 @@
     "lib/"
   ],
   "scripts": {
-    "postinstall": "pnpm dlx lefthook install || true",
     "clean": "rm -rf node_modules && rm -rf .pnpm-store && rm -rf lib",
     "tsc": "rm -rf lib && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "prepublishOnly": "pnpm run tsc",
