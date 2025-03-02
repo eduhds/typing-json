@@ -5,7 +5,6 @@
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
   "bin": "./bin/typing-json.cjs",
-  "browser": "./lib/esm/index.js",
   "files": [
     "lib/"
   ],
