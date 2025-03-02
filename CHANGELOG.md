@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v0.1.8
+
+[compare changes](https://github.com/eduhds/typing-json/compare/v0.1.6...v0.1.8)
+
+### 🩹 Fixes
+
+- Bin require ([bd6efc3](https://github.com/eduhds/typing-json/commit/bd6efc3))
+
+### 🏡 Chore
+
+- Renaming project ([30b666e](https://github.com/eduhds/typing-json/commit/30b666e))
+- Bump v0.1.7 ([b5cb65d](https://github.com/eduhds/typing-json/commit/b5cb65d))
+- Add browser field ([008b4a7](https://github.com/eduhds/typing-json/commit/008b4a7))
+
+### ❤️ Contributors
+
+- Eduardo H. Da Silva ([@eduhds](http://github.com/eduhds))
+
 ## v0.1.7
 
 [compare changes](https://github.com/eduhds/typing-json/compare/v0.1.6...v0.1.7)
