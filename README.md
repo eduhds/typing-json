@@ -8,13 +8,7 @@
 
 Get types from your JSON data to use in TypeScript.
 
-<!-- -->[https://eduhds.github.io/json-to-types/](https://eduhds.github.io/json-to-types/)
-
-<img src="screenshot.png" />
--->
-<!-- [Documentação](https://<username>.github.io/<repository>) -->
-
-## Instalação
+## Install
 
 ```sh
 npm i typing-json
@@ -22,18 +16,61 @@ yarn add typing-json
 pnpm add typing-json
 ```
 
-## Desenvolvimento
+## Usage
+
+### CLI
 
 ```sh
-# Limpar outputs
+npx typing-json '{
+    "name": "France",
+    "capital": "Paris",
+    "population": 67364357,
+    "area": 551695,
+    "currency": "Euro",
+    "languages": ["French"],
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg"
+}'
+```
+
+Result:
+
+```ts
+{
+  name: string;
+  capital: string;
+  population: number;
+  area: number;
+  currency: string;
+  languages: Array<string>;
+  region: string;
+  subregion: string;
+  flag: string;
+}
+```
+
+### Library
+
+```ts
+import { jsonToTypes } from 'typing-json';
+
+jsonToTypes('{ "name": "France" }')
+  .then((data) => console.log(data));
+
+/* Result:
+{
+  name: string;
+}
+*/
+```
+
+## Development
+
+```sh
 pnpm run clean
 
-# Compilar lib
 pnpm run tsc
 
-# Executar testes
 pnpm run test
-
-# Gerar documentação
-pnpm run docs
 ```
