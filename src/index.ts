@@ -1,4 +1,5 @@
-import prettier from '@prettier/sync';
+//import prettier from '@prettier/sync';
+import prettier from 'prettier';
 
 type Input = object | null | undefined | string | number | boolean;
 type Output = object | null | undefined | string | number | boolean;
@@ -67,7 +68,7 @@ function fmtKey(key = '') {
   return key;
 }
 
-export function jsonToTypes(jsonInput = '') {
+export async function jsonToTypes(jsonInput = '') {
   if (!jsonInput) return '';
 
   try {
@@ -76,7 +77,7 @@ export function jsonToTypes(jsonInput = '') {
     const out = parseToTypes(json);
     const outStr = parseToString(out);
 
-    return prettier.format(outStr, { parser: 'typescript' });
+    return await prettier.format(outStr, { parser: 'typescript' });
   } catch (error) {
     return String(error);
   }

@@ -10,7 +10,9 @@ if (!args.length) {
   process.exit(1);
 }
 
-const json = args[0];
-const types = jsonToTypes(json);
+(async () => {
+  const json = args[0];
+  const types = await jsonToTypes(json);
 
-console.log(types);
+  console.log(types);
+})();
