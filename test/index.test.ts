@@ -1,51 +1,39 @@
 import { jsonToTypes } from '../src';
 
-test('Should return number', () => {
-  expect(1).toEqual(1);
+test('Should return number', async () => {
+  expect(await jsonToTypes('1')).toEqual('number;\n');
 });
 
-/* 
-test('Should return number', () => {
-  expect(jsonToTypes('1')).toEqual(`number;
-`);
+test('Should return string', async () => {
+  expect(await jsonToTypes('"hello"')).toEqual('string;\n');
+  expect(await jsonToTypes('"1"')).toEqual('string;\n');
 });
 
-test('Should return string', () => {
-  expect(jsonToTypes('"hello"')).toEqual(`string;
-`);
-  expect(jsonToTypes('"1"')).toEqual(`string;
-`);
+test('Should return null', async () => {
+  expect(await jsonToTypes('null')).toEqual('null;\n');
 });
 
-test('Should return null', () => {
-  expect(jsonToTypes('null')).toEqual(`null;
-`);
+test('Should return Object Type', async () => {
+  expect(await jsonToTypes('{}')).toEqual('{\n}\n');
 });
 
-test('Should return Object Type', () => {
-  expect(jsonToTypes('{}')).toEqual(`{
-}
-`);
+test('Should return Array Type', async () => {
+  expect(await jsonToTypes('[]')).toEqual('Array<null>;\n');
 });
 
-test('Should return Array Type', () => {
-  expect(jsonToTypes('[]')).toEqual(`Array<null>;
-`);
-});
-
-test('Should return Simple Object', () => {
-  expect(jsonToTypes('{"hello": "world"}')).toEqual(`{
+test('Should return Simple Object', async () => {
+  expect(await jsonToTypes('{"hello": "world"}')).toEqual(`{
   hello: string;
 }
 `);
 });
 
-test('Should return Array of numbers', () => {
-  expect(jsonToTypes('[1, 2, 3]')).toEqual(`Array<number>;
+test('Should return Array of numbers', async () => {
+  expect(await jsonToTypes('[1, 2, 3]')).toEqual(`Array<number>;
 `);
 });
 
-test('Should return nested Object', () => {
+test('Should return nested Object', async () => {
   const example = `{
     "glossary": {
         "title": "example glossary",
@@ -69,7 +57,7 @@ test('Should return nested Object', () => {
     }
 }`;
 
-  expect(jsonToTypes(example)).toEqual(`{
+  expect(await jsonToTypes(example)).toEqual(`{
   glossary: {
     title: string;
     GlossDiv: {
@@ -93,4 +81,3 @@ test('Should return nested Object', () => {
 }
 `);
 });
- */
