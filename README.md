@@ -52,6 +52,8 @@ Result:
 
 ### Library
 
+[Example](https://json-to-types-tool.web.app)
+
 ```ts
 import { jsonToTypes } from 'typing-json';
 
