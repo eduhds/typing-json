@@ -69,10 +69,11 @@ function fmtKey(key = '') {
   return key;
 }
 
-export async function jsonToTypes(jsonInput = '') {
-  if (!jsonInput) return '';
-
+export async function jsonToTypes(jsonInput: string) {
   try {
+    if (!jsonInput || typeof jsonInput !== 'string')
+      throw new Error('Invalid argument: ' + String(jsonInput));
+
     const json = JSON.parse(jsonInput);
 
     const out = parseToTypes(json);
